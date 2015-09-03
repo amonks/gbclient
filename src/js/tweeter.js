@@ -27,9 +27,11 @@ module.exports = function (proxy) {
     })
   }
 
-  API.newTweet = function (tweet, container) {
+  API.newTweet = function (tweet, container, masonry) {
     if (API.isGif(tweet)) {
-      container.prepend(API.renderTweet(tweet))
+      let renderedTweet = API.renderTweet(tweet)
+      container.prepend(renderedTweet)
+      container.masonry('prepended', renderedTweet)
     }
   }
   return API

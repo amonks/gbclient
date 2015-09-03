@@ -33,6 +33,8 @@
   },
   "dependencies": {
     "jquery": "^2.1.4",
+    "jquery-bridget": "^1.1.0",
+    "masonry-layout": "^3.3.2",
     "socket.io-client": "^1.3.6"
   }
 }
