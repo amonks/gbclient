@@ -23,7 +23,8 @@ module.exports = function (proxy) {
 
   API.renderTweet = function (tweet) {
     return tweet_hbs({
-      url: tweet.extended_entities.media[0].video_info.variants[0].url
+      url: tweet.extended_entities.media[0].video_info.variants[0].url,
+      thumbnail: tweet.extended_entities.media[0].media_url
     })
   }
 
