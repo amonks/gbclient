@@ -1,4 +1,6 @@
 // main.js
+
+require('babelify/polyfill')
 var $ = require('jquery')
 
 var Tweeter = require('./tweeter')
