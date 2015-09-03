@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - iojs
+  - giojs
 before_script:
   - npm install -g gulp
 script: gulp
@@ -10,7 +10,7 @@ deploy:
   secret_access_key:
     secure: BPihs+sIc1Kys2Zf15v+PR8zLeJI2DYPFeE8yDAFiDDOwJU57sL9sfAbvKMhdYPnj45TVHXX1fNK4LrK+TNx6PBioGnJ98g3HoE4fHc/GJ0u9NZp6SYmPHhNnF54IGMCMmfylsr45uR4w2unXAySAhMkBE5VR6nMExPflr5hDNY2JADm3iQ0bSpLW9REXmFMB/0k92Lnjvaz/HeIfAYw0W8q2dn6llXJc7MZI1uMafuPahsj94SH2eVktAzaV7EHClGxEKWusrV/23/Hw1onqqEgH1Jd8vf0nh4TINbMbq5uoWfiqllAG3+WTor2fhWIylgG1Jk/D/s5TX+hE5PAuzbOgXSqzvY+0eN+Vdrw3jnymuWKTl17rO08V7j14JJ1SVLEJT2/UDZzEBi5SgdbeYGNETIPKfOjO40w68F7SWBSKARiHlxS9IC109J0kCxVDw4P5VCfZcsFIq7UmhWpyyX6RDKbMXNw+YBw32RwLS8vUd/Acr+ca1Z5c7KO4rDF/IE0+wZCyJ1AFpcqZiNKRy9zfNLp4BTVVfRbGUch8lw51Wx8hkmW/wQn7ZeGp4SSQv3pqaH39qTuQ8dUNGUUsT2CSsiZt7+QYfUYidXzzQ9y35C+uDPAQBhksYMG5iCBTiRbH0NMXqw7kdmFg4AZUTbQ12diHigo7nLu7CVs56U=
   bucket: gifbooth.co
-  local-dir: dist
+  local_dir: dist
   acl: public_read
   on:
     repo: amonks/gbclient
