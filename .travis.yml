@@ -5,6 +5,7 @@ before_script:
   - npm install -g gulp
 script: gulp
 deploy:
+  skip_cleanup: true
   provider: s3
   access_key_id: AKIAJLBZWENPKPP77JZA
   secret_access_key:
