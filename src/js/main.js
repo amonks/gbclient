@@ -2,7 +2,7 @@
 var $ = require('jquery')
 
 var Tweeter = require('./tweeter')
-var tweeter = new Tweeter('//localhost:8000')
+var tweeter = new Tweeter('//gifbooth-proxy.herokuapp.com')
 
 $(function () {
 
