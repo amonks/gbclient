@@ -12,28 +12,84 @@ let Tweeter = require('./tweeter')
 let tweeter = new Tweeter(PROXY_URL)
 
 $(function () {
-  let setButton = function (tweetElement, tweet) {
+  let armShareButton = function (tweetElement, tweet) {
     tweetElement.find('.btn-share').click(function () {
+      let parsed_tweet = tweeter.parse(tweet)
+
+      // create and show modal
       let share_hbs = require('../hbs/share.hbs')
-      console.log(tweet)
-      let modal = $(share_hbs(tweeter.parse(tweet)))
+      let modal = $(share_hbs(parsed_tweet))
       $('body').append(modal)
-      console.log(modal)
       modal.modal('show')
+
+      modal.find('.btn-email').click(function () {
+        let email_hbs = require('../hbs/email.hbs')
+        let emailModal = $(email_hbs())
+        $('body').append(emailModal)
+        emailModal.modal('show')
+
+        // arm email send button
+        emailModal.find('.btn-email-send').click(function (e) {
+          e.preventDefault()
+
+          let params = validate(emailModal, [
+            'from_name',
+            'from_email',
+            'to_name',
+            'to_email'
+          ])
+          if (params) {
+            console.log('params', params, 'parsed_tweet', parsed_tweet)
+            params.gif_url = parsed_tweet.gif_url
+            email(params)
+            emailModal.modal('hide')
+          }
+        })
+      })
     })
+  }
+  let validate = function (container, things) {
+    let params = {}
+    for (let thing of things) {
+      let whatever = container.find('#' + thing).val()
+      if (whatever.length > 0) {
+        container.find('#' + thing).parent().addClass('has-success')
+        params[thing] = whatever
+      } else {
+        container.find('#' + thing).parent().addClass('has-error')
+        console.log('form error!')
+        return false
+      }
+    }
+    return params
   }
 
   let newTweet = function (tweet, container) {
     if (tweeter.isGif(tweet)) {
       let tweetElement = $(renderTweet(tweet))
       container.prepend(tweetElement)
-      setButton(tweetElement, tweet)
+      armShareButton(tweetElement, tweet)
     }
   }
 
   let renderTweet = function (tweet) {
     let tweet_hbs = require('../hbs/tweet.hbs')
     return tweet_hbs(tweeter.parse(tweet))
+  }
+
+  let serialize = function (obj) {
+    let str = []
+    for (let p in obj) {
+      if (obj.hasOwnProperty(p)) {
+        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]))
+      }
+    }
+    return str.join('&')
+  }
+
+  let email = function (params) {
+    console.log('sending email', params)
+    $.post(PROXY_URL + '/email?' + serialize(params))
   }
 
   tweeter.getTweets(function (tweets) {
