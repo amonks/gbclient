@@ -101,6 +101,7 @@ $(function () {
 
   let gotTweets = function (tweets) {
     $('#loading').addClass('hidden')
+    $('#load-more').removeClass('hidden')
     console.log('got ' + tweets.length + ' tweets')
     // can't use 'for of' here cuz it doesn't guarantee order
     let any_new_tweets = false
