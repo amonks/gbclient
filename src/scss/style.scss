@@ -1,8 +1,21 @@
 // style.scss
 
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css";
+
 .tweet {
-  padding: 15px;
+  padding: 0px;
 }
 video {
-  width: 100%
+  width: 100%;
+}
+// Modifier class for 16:9 aspect ratio
+.embed-responsive-3by2 {
+  padding-bottom: 66.6667%;
+}
+
+.btn-share {
+  position: absolute;
+  z-index: 100;
+  right: 10px;
+  bottom: 10px;
 }

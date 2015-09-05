@@ -7,9 +7,10 @@ var del = require('del')
 var plumber = require('gulp-plumber')
 var sass = require('gulp-sass')
 var browserify = require('gulp-browserify')
+var concat = require('gulp-concat')
 
-gulp.task('prepare', function (callback) {
-  del([
+gulp.task('prepare', function () {
+  del.sync([
     './dist/'
   ])
 })
@@ -31,10 +32,24 @@ gulp.task('pub', function () {
 })
 
 gulp.task('jade', function () {
-  var locals = {}
-  gulp.src('./src/jade/**/*.jade')
+  var locals = {
+    'PROXY_URL': 'http://gifbooth-proxy.herokuapp.com'
+  }
+  gulp.src('./src/jade/index.jade')
     .pipe(plumber())
     .pipe(jade({ locals: locals }))
+    .pipe(concat('index.html'))
+    .pipe(gulp.dest('dist/'))
+})
+
+gulp.task('jade-dev', function () {
+  var locals = {
+    'PROXY_URL': '//localhost:8000'
+  }
+  gulp.src('./src/jade/index.jade')
+    .pipe(plumber())
+    .pipe(jade({ locals: locals }))
+    .pipe(concat('dev.html'))
     .pipe(gulp.dest('dist/'))
 })
 
@@ -47,11 +62,11 @@ gulp.task('scss', function () {
 gulp.task('watch', ['build'], function () {
   gulp.watch('src/js/*.js', ['js'])
   gulp.watch('src/hbs/*.hbs', ['js'])
-  gulp.watch('src/jade/*.jade', ['jade'])
+  gulp.watch('src/jade/*.jade', ['jade', 'jade-dev'])
   gulp.watch('src/scss/*.scss', ['scss'])
   gulp.watch('pub/**/*.*', ['pub'])
 })
 
-gulp.task('build', ['jade', 'pub', 'js', 'scss'])
+gulp.task('build', ['jade', 'jade-dev', 'pub', 'js', 'scss'])
 
 gulp.task('default', ['build'])
