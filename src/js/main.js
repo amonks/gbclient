@@ -3,7 +3,8 @@
 /* global PROXY_URL */
 
 require('babelify/polyfill')
-var $ = require('jquery')
+let $ = require('jquery')
+
 window.$ = window.jQuery = $
 let bootstrap = require('bootstrap')
 console.log(bootstrap)
@@ -72,6 +73,12 @@ $(function () {
     }
   }
 
+  let oldTweet = function (tweet, container) {
+    let tweetElement = $(renderTweet(tweet))
+    container.append(tweetElement)
+    armShareButton(tweetElement, tweet)
+  }
+
   let renderTweet = function (tweet) {
     let tweet_hbs = require('../hbs/tweet.hbs')
     return tweet_hbs(tweeter.parse(tweet))
@@ -92,15 +99,36 @@ $(function () {
     $.post(PROXY_URL + '/email?' + serialize(params))
   }
 
-  tweeter.getTweets(function (tweets) {
+  let gotTweets = function (tweets) {
     $('#loading').addClass('hidden')
     console.log('got ' + tweets.length + ' tweets')
     // can't use 'for of' here cuz it doesn't guarantee order
-    for (let i = tweets.length; i--; i <= 0) {
+    let any_new_tweets = false
+    for (let i = 0; i <= tweets.length - 1; i++) {
       let tweet = tweets[i]
-      newTweet(tweet, $('#tweets'))
+
+      if (tweet.id_str !== $('.tweet').last().attr('id') &&
+          tweeter.isGif(tweet)) {
+        oldTweet(tweet, $('#tweets'))
+        any_new_tweets = true
+      }
     }
-  })
+
+    if (any_new_tweets === false) {
+      $('#load-more').addClass('hidden')
+      getMoreTweets = function () { console.log('no more tweets') }
+    }
+  }
+
+  let getMoreTweets = function () {
+    // get more tweets
+    let maxID = $('.tweet').last().attr('id')
+    tweeter.getMoreTweets(maxID, gotTweets)
+  }
+
+  $('#load-more').click(getMoreTweets)
+
+  tweeter.getTweets(gotTweets)
 
   tweeter.streamTweets(function (tweet) {
     $('#loading').addClass('hidden')

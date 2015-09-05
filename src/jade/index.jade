@@ -6,10 +6,12 @@ html
     meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
   body
     // main container
-    #main.container-fluid
+    #main.container.text-center
       h1 Gif Booth!
       #tweets.row
         #loading loading...
+      .row.text-center
+        span#load-more.btn.btn-default load more gifs
     script.
       var PROXY_URL = '#{PROXY_URL}'
     script(src='main.js')

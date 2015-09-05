@@ -2,10 +2,30 @@
 
 module.exports = function (proxy) {
   let API = {}
+  let gettingTweets = false
+  let last_maxID = false
 
   API.getTweets = function (callback) {
     let $ = require('jquery')
-    $.get(proxy + '/tweets', callback, 'json')
+    if (gettingTweets === false) {
+      gettingTweets = true
+      $.get(proxy + '/tweets', function (data) {
+        gettingTweets = false
+        callback(data)
+      }, 'json')
+    }
+  }
+
+  API.getMoreTweets = function (maxID, callback) {
+    let $ = require('jquery')
+    if (gettingTweets === false && maxID !== last_maxID) {
+      gettingTweets = true
+      $.get(proxy + '/tweets/' + maxID, function (data) {
+        gettingTweets = false
+        callback(data)
+      }, 'json')
+      last_maxID = maxID
+    }
   }
 
   API.streamTweets = function (callback) {
