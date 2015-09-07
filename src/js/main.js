@@ -34,7 +34,7 @@ $(function () {
             params.mp4_url = parsed_tweet.mp4_url
             params.tweet_id = parsed_tweet.tweet_id
             if (params) {
-              let postUrl = ENV.PROXY_URL + '/post-as-tweet?' + serialize(params)
+              let postUrl = ENV.PROXY_URL + '/share/twitter?' + serialize(params)
               console.log(postUrl)
               window.location.href = window.location = postUrl
             }
