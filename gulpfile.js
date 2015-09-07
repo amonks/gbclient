@@ -89,7 +89,8 @@ gulp.task('watch', ['build'], function () {
   gulp.watch('src/js/*.js', ['js'])
   gulp.watch('src/hbs/*.hbs', ['hbs'])
   gulp.watch('src/jade/*.jade', ['jade', 'jade-dev'])
-  gulp.watch('src/scss/*.scss', ['scss'])
+  gulp.watch('src/md/*.md', ['jade', 'jade-dev'])
+  gulp.watch('src/scss/**/*.scss', ['scss'])
   gulp.watch('pub/**/*.*', ['pub'])
 })
 

@@ -1,6 +1,6 @@
 // main.js
 
-/* global ENV Handlebars $ Gifbooth Tweeter */
+/* global ENV Handlebars $ Gifbooth Tweeter Typekit */
 
 Handlebars.registerHelper('url', function (s) {
   return encodeURIComponent(s)
@@ -179,6 +179,8 @@ $(function () {
       alert(text, level)
     }
   }
+
+  try { Typekit.load({ async: true }) } catch (e) {}
 
   alertFromQueryString()
 

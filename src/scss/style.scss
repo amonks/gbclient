@@ -1,6 +1,7 @@
 // style.scss
 
-@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css";
+@import "bootstrap_variables";
+@import "bootstrap";
 
 .tweet {
   padding: 0px;
@@ -28,3 +29,8 @@ video {
 #lead li { list-style: none; display: inline; }
 #lead li:after { content: " \02022  "; }
 #lead li:last-child:after { content: none; }
+
+#about {
+  padding-bottom: 3em;
+  padding-top: 2em;
+}
