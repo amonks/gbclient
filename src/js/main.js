@@ -180,7 +180,16 @@ $(function () {
     }
   }
 
-  try { Typekit.load({ async: true }) } catch (e) {}
+  let typekit = function () {
+    try {
+      Typekit.load({ async: true })
+      console.log('loaded typekit')
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  typekit()
 
   alertFromQueryString()
 
