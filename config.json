@@ -1,0 +1,5 @@
+{
+  "dev_proxy": "http://amonks.ngrok.io",
+  "production_proxy": "http://gifbooth-proxy.herokuapp.com",
+  "tweet_text": "another cool gif from the booth"
+}

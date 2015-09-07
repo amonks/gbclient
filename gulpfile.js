@@ -12,6 +12,9 @@ var handlebars = require('gulp-handlebars')
 var wrap = require('gulp-wrap')
 var declare = require('gulp-declare')
 
+// var config = fs.readFileSync('./config.json', 'json')
+var config = require('./config.json')
+
 gulp.task('prepare', function () {
   del.sync([
     './dist/'
@@ -48,8 +51,8 @@ gulp.task('pub', function () {
 
 gulp.task('jade', function () {
   var locals = {
-    'PROXY_URL': 'http://gifbooth-proxy.herokuapp.com',
-    'tweet_text': 'Another cool gif from the Gif Booth'
+    'PROXY_URL': config.production_proxy,
+    'tweet_text': config.tweet_text
   }
   gulp.src('./src/jade/index.jade')
     .pipe(plumber())
@@ -60,8 +63,8 @@ gulp.task('jade', function () {
 
 gulp.task('jade-dev', function () {
   var locals = {
-    'PROXY_URL': 'http://amonks.ngrok.io',
-    'tweet_text': 'Another cool gif from the Gif Booth'
+    'PROXY_URL': config.dev_proxy,
+    'tweet_text': config.tweet_text
   }
   gulp.src('./src/jade/index.jade')
     .pipe(plumber())

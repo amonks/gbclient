@@ -109,7 +109,9 @@ $(function () {
 
   let email = function (params) {
     console.log('sending email', params)
-    $.post(PROXY_URL + '/email?' + serialize(params))
+    $.post(PROXY_URL + '/email?' + serialize(params), {}, function () {
+      alert('email sent', 'success')
+    })
   }
 
   let gotTweets = function (tweets) {
@@ -139,6 +141,40 @@ $(function () {
     let maxID = $('.tweet').last().attr('id')
     tweeter.getMoreTweets(maxID, gotTweets)
   }
+
+  let alert = function (text, level) {
+    let alertElem = $(Gifbooth.templates.alert({text: text, level: level}))
+    $('#alerts').append(alertElem)
+  }
+
+  let paramsFromQueryString = function () {
+    return (function (a) {
+      if (a === '') return {}
+      var b = {}
+      for (var i = 0; i < a.length; i++) {
+        var p = a[i].split('=')
+        if (p.length !== 2) continue
+        b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, ' '))
+      }
+      return b
+    })(window.location.search.substr(1).split('&'))
+  }
+
+  let alertFromQueryString = function () {
+    let params = paramsFromQueryString()
+    let text, level
+    if (params.alert) {
+      text = params.alert
+      if (params.alert_level) {
+        level = params.alert_level
+      } else {
+        level = 'info'
+      }
+      alert(text, level)
+    }
+  }
+
+  alertFromQueryString()
 
   $('#load-more').click(getMoreTweets)
 
