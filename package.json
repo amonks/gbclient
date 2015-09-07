@@ -28,7 +28,7 @@
     "gulp-wrap": "^0.11.0",
     "handlebars": "^4.0.0",
     "hbsfy": "^2.2.1",
-    "marked": "^0.3.5"
+    "jstransformer-marked": "^1.0.1"
   },
   "dependencies": {
     "jquery": "^2.1.4",
