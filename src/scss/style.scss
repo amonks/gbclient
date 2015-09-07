@@ -1,39 +1,46 @@
 // style.scss
 
-@import "bootstrap_variables";
-@import "bootstrap";
-@import "ribbons";
+@import 'bootstrap_variables';
+@import 'bootstrap';
+@import 'ribbons';
 
 .tweet {
-  padding: 0px;
+  padding: 0;
 }
+
 video {
   width: 100%;
 }
+
 // Modifier class for 16:9 aspect ratio
 .embed-responsive-3by2 {
   padding-bottom: 66.6667%;
 }
 
 .btn-share {
-  position: absolute;
-  z-index: 100;
-  right: 10px;
   bottom: 10px;
+  position: absolute;
+  right: 10px;
+  z-index: 100;
 }
 
 #load-more {
-  margin: 20px
+  margin: 20px;
 }
 
 #lead ul { padding-left: 0; }
-#lead li { list-style: none; display: inline; }
-#lead li:after { content: " \02022  "; }
+#lead li {
+  display: inline;
+  list-style: none;
+}
+
+#lead li:after { content: ' \02022  '; }
 #lead li:last-child:after { content: none; }
 
 #about {
   min-height: 100%;
   padding-top: 10%;
+
   #year {
     padding-top: 10%;
   }

@@ -5,7 +5,7 @@
 var gulp = require('gulp')
 
 var jade = require('gulp-jade')
-var del = require('del')
+// var del = require('del')
 var plumber = require('gulp-plumber')
 var sass = require('gulp-sass')
 var babel = require('gulp-babel')
@@ -13,6 +13,10 @@ var concat = require('gulp-concat')
 var handlebars = require('gulp-handlebars')
 var wrap = require('gulp-wrap')
 var declare = require('gulp-declare')
+var minify = require('gulp-minify-css')
+var uglify = require('gulp-uglify')
+var minimize = require('gulp-minify-html')
+var gzip = require('gulp-gzip')
 
 // config
 
@@ -29,20 +33,12 @@ var configEnv = function (def, env) {
 
 // tasks
 
-gulp.task('prepare', function () {
-  del.sync([
-    './dist/'
-  ])
-})
-
 gulp.task('js', function () {
-  gulp.src('./src/js/main.js')
+  gulp.src('./src/js/*.js')
     .pipe(plumber())
     .pipe(babel())
-    .pipe(gulp.dest('dist/'))
-  gulp.src('./src/js/tweeter.js')
-    .pipe(plumber())
-    .pipe(babel())
+    .pipe(uglify())
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
@@ -55,6 +51,8 @@ gulp.task('hbs', function () {
       noRedeclare: true // Avoid duplicate declarations
     }))
     .pipe(concat('templates.js'))
+    .pipe(uglify())
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
@@ -67,7 +65,9 @@ gulp.task('jade', function () {
   gulp.src('./src/jade/index.jade')
     .pipe(plumber())
     .pipe(jade({ locals: {config: configEnv(config.default, 'production')} }))
+    .pipe(minimize())
     .pipe(concat('index.html'))
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
@@ -75,13 +75,17 @@ gulp.task('jade-dev', function () {
   gulp.src('./src/jade/index.jade')
     .pipe(plumber())
     .pipe(jade({ locals: {config: configEnv(config.default, 'dev')} }))
+    .pipe(minimize())
     .pipe(concat('dev.html'))
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
 gulp.task('scss', function () {
   gulp.src('./src/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(minify())
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
