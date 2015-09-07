@@ -13,7 +13,6 @@ var concat = require('gulp-concat')
 var handlebars = require('gulp-handlebars')
 var wrap = require('gulp-wrap')
 var declare = require('gulp-declare')
-var marked = require('marked') // for jade
 
 // config
 
