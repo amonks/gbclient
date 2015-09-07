@@ -23,3 +23,8 @@ video {
 #load-more {
   margin: 20px
 }
+
+#lead ul { padding-left: 0; }
+#lead li { list-style: none; display: inline; }
+#lead li:after { content: " \02022  "; }
+#lead li:last-child:after { content: none; }

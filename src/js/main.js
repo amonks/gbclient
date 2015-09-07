@@ -1,12 +1,12 @@
 // main.js
 
-/* global PROXY_URL Handlebars $ Gifbooth Tweeter */
+/* global ENV Handlebars $ Gifbooth Tweeter */
 
 Handlebars.registerHelper('url', function (s) {
   return encodeURIComponent(s)
 })
 
-let tweeter = new Tweeter(PROXY_URL)
+let tweeter = new Tweeter(ENV.PROXY_URL)
 
 $(function () {
   let armShareButton = function (tweetElement, tweet) {
@@ -23,6 +23,8 @@ $(function () {
         $('body').append(tweetModal)
         tweetModal.modal('show')
 
+        tweetModal.find('#text').attr('value', ENV.TWEET_TEXT)
+
         // arm tweet send button
         tweetModal.find('.btn-post-tweet').click(function (e) {
           e.preventDefault()
@@ -32,7 +34,7 @@ $(function () {
             params.mp4_url = parsed_tweet.mp4_url
             params.tweet_id = parsed_tweet.tweet_id
             if (params) {
-              let postUrl = PROXY_URL + '/post-as-tweet?' + serialize(params)
+              let postUrl = ENV.PROXY_URL + '/post-as-tweet?' + serialize(params)
               console.log(postUrl)
               window.location.href = window.location = postUrl
             }
@@ -109,7 +111,7 @@ $(function () {
 
   let email = function (params) {
     console.log('sending email', params)
-    $.post(PROXY_URL + '/email?' + serialize(params), {}, function () {
+    $.post(ENV.PROXY_URL + '/email?' + serialize(params), {}, function () {
       alert('email sent', 'success')
     })
   }

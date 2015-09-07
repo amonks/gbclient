@@ -50,25 +50,25 @@ gulp.task('pub', function () {
 })
 
 gulp.task('jade', function () {
-  var locals = {
-    'PROXY_URL': config.production_proxy,
-    'tweet_text': config.tweet_text
+  var configVars = config.default
+  for (var attrname in config.production) {
+    configVars[attrname] = config.production[attrname]
   }
   gulp.src('./src/jade/index.jade')
     .pipe(plumber())
-    .pipe(jade({ locals: locals }))
+    .pipe(jade({ locals: {config: configVars} }))
     .pipe(concat('index.html'))
     .pipe(gulp.dest('dist/'))
 })
 
 gulp.task('jade-dev', function () {
-  var locals = {
-    'PROXY_URL': config.dev_proxy,
-    'tweet_text': config.tweet_text
+  var configVars = config.default
+  for (var attrname in config.dev) {
+    configVars[attrname] = config.dev[attrname]
   }
   gulp.src('./src/jade/index.jade')
     .pipe(plumber())
-    .pipe(jade({ locals: locals }))
+    .pipe(jade({ locals: {config: configVars} }))
     .pipe(concat('dev.html'))
     .pipe(gulp.dest('dist/'))
 })

@@ -1,16 +1,16 @@
 <div class="modal fade" id="{{tweet_id}}-share">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Share .gif</h4>
+        <h4 class="modal-title">Share</h4>
       </div>
       <div class="modal-body">
-        <ul>
-          <li><a href="{{gif_url}}">Download .gif</a></li>
-          <li><a href="{{mp4_url}}">Download .mp4</a></li>
-          <li><a class="btn-tweet" data-media-id="{{media_id}}" href="#">Tweet .gif</li>
-          <li><a href="#" class='btn-email'>Email .gif</a></li>
+        <ul class="nav nav-stacked nav-pills">
+          <li role="presentation"><a href="{{gif_url}}">Download .gif</a></li>
+          <li role="presentation"><a href="{{mp4_url}}">Download .mp4</a></li>
+          <li role="presentation"><a class="btn-tweet" data-media-id="{{media_id}}" href="#">Tweet .gif</a></li>
+          <li role="presentation"><a href="#" class='btn-email'>Email .gif</a></li>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

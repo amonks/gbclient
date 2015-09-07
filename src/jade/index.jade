@@ -5,26 +5,46 @@ html
     link(rel='stylesheet' href='style.css')
     meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
   body
+    //- script.
+    //-   window.fbAsyncInit = function() {
+    //-     FB.init({
+    //-       appId      : '1657298807818306',
+    //-       xfbml      : true,
+    //-       version    : 'v2.4'
+    //-     });
+    //-   };
+    //-   
+    //-   FB.ui(
+    //-     {
+    //-       method: 'share',
+    //-       href: 'https://developers.facebook.com/docs/'
+    //-     }, function (response) {}
+    //-   );
+    //- 
+    //-   (function(d, s, id){
+    //-      var js, fjs = d.getElementsByTagName(s)[0];
+    //-      if (d.getElementById(id)) {return;}
+    //-      js = d.createElement(s); js.id = id;
+    //-      js.src = "//connect.facebook.net/en_US/sdk.js";
+    //-      fjs.parentNode.insertBefore(js, fjs);
+    //-    }(document, 'script', 'facebook-jssdk'));
+
     // main container
     #main.container.text-center
-      h1 logo 
-      h2
-        a(href="#") link
-        = ' '
-        | &bull;
-        = ' '
-        a(href="#") link
-        = ' '
-        | &bull;
-        = ' '
-        a(href="#") link
+      #lead
+        h1 #{config.event.title}
+        h2
+          ul
+            each link in config.event.links
+              li
+                a(href="#{link.url}") #{link.title}
       #alerts.row
       #tweets.row
         #loading loading...
       .row
         span#load-more.hidden.btn.btn-default load more gifs
     script.
-      var PROXY_URL = '#{PROXY_URL}'
+      var ENV = !{JSON.stringify(config)}
     script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.js')

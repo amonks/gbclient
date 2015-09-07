@@ -1,5 +1,27 @@
 {
-  "dev_proxy": "http://amonks.ngrok.io",
-  "production_proxy": "http://gifbooth-proxy.herokuapp.com",
-  "tweet_text": "another cool gif from the booth"
+  "default": {
+    "GIFS_URL": "http://gifs.gifbooth.co",
+    "TWEET_TEXT": "another incredible gif from the booth",
+    "event": {
+      "title": "Jill Stuart",
+      "links": [
+        {
+          "title": "Instagram",
+          "url": "https://instagram.com/jillstuart/?hl=en"
+        },
+        {
+          "title": "Website",
+          "url": "http://www.jillstuart.com/"
+        }
+      ]
+    }
+  },
+
+  "dev": {
+    "PROXY_URL": "http://amonks.ngrok.io"
+  },
+
+  "production": {
+    "PROXY_URL": "http://proxy.gifbooth.co"
+  }
 }
