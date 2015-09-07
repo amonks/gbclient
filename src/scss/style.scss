@@ -2,6 +2,7 @@
 
 @import "bootstrap_variables";
 @import "bootstrap";
+@import "ribbons";
 
 .tweet {
   padding: 0px;
@@ -31,6 +32,9 @@ video {
 #lead li:last-child:after { content: none; }
 
 #about {
-  padding-bottom: 3em;
-  padding-top: 2em;
+  min-height: 100%;
+  padding-top: 10%;
+  #year {
+    padding-top: 10%;
+  }
 }
