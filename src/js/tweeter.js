@@ -44,7 +44,7 @@ window.Tweeter = function (proxy) {
       poster: 'boothboothtest',
       mp4_url: tweet.extended_entities.media[0].video_info.variants[0].url,
       thumbnail: tweet.extended_entities.media[0].media_url,
-      gif_url: ENV.GIFS_URL + tweet.id_str + '.gif',
+      gif_url: ENV.GIFS_URL + '/' + tweet.id_str + '.gif',
       media_id: tweet.entities.media[0].id_str,
       tweet_id: tweet.id_str
     }
