@@ -1,15 +1,11 @@
 // main.js
 
-/* global PROXY_URL */
+/* global PROXY_URL Handlebars $ Gifbooth Tweeter */
 
-require('babelify/polyfill')
-let $ = require('jquery')
+Handlebars.registerHelper('url', function (s) {
+  return encodeURIComponent(s)
+})
 
-window.$ = window.jQuery = $
-let bootstrap = require('bootstrap')
-console.log(bootstrap)
-
-let Tweeter = require('./tweeter')
 let tweeter = new Tweeter(PROXY_URL)
 
 $(function () {
@@ -18,14 +14,34 @@ $(function () {
       let parsed_tweet = tweeter.parse(tweet)
 
       // create and show modal
-      let share_hbs = require('../hbs/share.hbs')
-      let modal = $(share_hbs(parsed_tweet))
+      let modal = $(Gifbooth.templates.share(parsed_tweet))
       $('body').append(modal)
       modal.modal('show')
 
+      modal.find('.btn-tweet').click(function () {
+        let tweetModal = $(Gifbooth.templates.tweet())
+        $('body').append(tweetModal)
+        tweetModal.modal('show')
+
+        // arm tweet send button
+        tweetModal.find('.btn-post-tweet').click(function (e) {
+          e.preventDefault()
+
+          let params = validate(tweetModal, ['text'])
+          if (params) {
+            params.mp4_url = parsed_tweet.mp4_url
+            params.tweet_id = parsed_tweet.tweet_id
+            if (params) {
+              let postUrl = PROXY_URL + '/post-as-tweet?' + serialize(params)
+              console.log(postUrl)
+              window.location.href = window.location = postUrl
+            }
+          }
+        })
+      })
+
       modal.find('.btn-email').click(function () {
-        let email_hbs = require('../hbs/email.hbs')
-        let emailModal = $(email_hbs())
+        let emailModal = $(Gifbooth.templates.email())
         $('body').append(emailModal)
         emailModal.modal('show')
 
@@ -34,8 +50,6 @@ $(function () {
           e.preventDefault()
 
           let params = validate(emailModal, [
-            'from_name',
-            'from_email',
             'to_name',
             'to_email'
           ])
@@ -80,8 +94,7 @@ $(function () {
   }
 
   let renderTweet = function (tweet) {
-    let tweet_hbs = require('../hbs/tweet.hbs')
-    return tweet_hbs(tweeter.parse(tweet))
+    return Gifbooth.templates.gif(tweeter.parse(tweet))
   }
 
   let serialize = function (obj) {

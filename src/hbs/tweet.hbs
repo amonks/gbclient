@@ -1,7 +1,22 @@
-<div id="{{tweet_id}}" class="tweet col-sm-6 col-md-4 col-lg-3">
-  <div class="embed-responsive embed-responsive-3by2">
-    <button class="btn-share btn btn-default"><span class="glyphicon glyphicon-share"></span></button>
-    <video class="embed-responsive-item" src="{{mp4_url}}" loop="loop" autoplay="autoplay" poster="{{thumbnail}}">
-    {{!-- <img src="{{gif_url}}" alt="cool gif" /> --}}
+<div class="modal fade" id="{{tweet_id}}-email">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Tweet .gif</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="text">Tweet Text</label>
+            <input type="text" class="form-control" id="text" value="Another cool gif from the booth" />
+          </div>
+          <button type="submit" class="btn btn-default btn-post-tweet">Tweet</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
