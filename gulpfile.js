@@ -1,5 +1,7 @@
 // gulpfile.js
 
+// modules
+
 var gulp = require('gulp')
 
 var jade = require('gulp-jade')
@@ -12,8 +14,20 @@ var handlebars = require('gulp-handlebars')
 var wrap = require('gulp-wrap')
 var declare = require('gulp-declare')
 
-// var config = fs.readFileSync('./config.json', 'json')
+// config
+
 var config = require('./config.json')
+
+var configEnv = function (def, env) {
+  var out = JSON.parse(JSON.stringify(def))
+  for (var attrname in config[env]) {
+    out[attrname] = config[env][attrname]
+  }
+  console.log('set config for ', env, 'to ', out)
+  return out
+}
+
+// tasks
 
 gulp.task('prepare', function () {
   del.sync([
@@ -50,25 +64,17 @@ gulp.task('pub', function () {
 })
 
 gulp.task('jade', function () {
-  var configVars = config.default
-  for (var attrname in config.production) {
-    configVars[attrname] = config.production[attrname]
-  }
   gulp.src('./src/jade/index.jade')
     .pipe(plumber())
-    .pipe(jade({ locals: {config: configVars} }))
+    .pipe(jade({ locals: {config: configEnv(config.default, 'production')} }))
     .pipe(concat('index.html'))
     .pipe(gulp.dest('dist/'))
 })
 
 gulp.task('jade-dev', function () {
-  var configVars = config.default
-  for (var attrname in config.dev) {
-    configVars[attrname] = config.dev[attrname]
-  }
   gulp.src('./src/jade/index.jade')
     .pipe(plumber())
-    .pipe(jade({ locals: {config: configVars} }))
+    .pipe(jade({ locals: {config: configEnv(config.default, 'dev')} }))
     .pipe(concat('dev.html'))
     .pipe(gulp.dest('dist/'))
 })
