@@ -43,8 +43,17 @@ $text-color:            #000 !default;
 // //
 // //## Font, line-height, and color for body text, headings, and more.
 //
-$font-family-sans-serif:  "effra", Helvetica, Arial, sans-serif !default;
-$font-family-serif:       "iskra", sans-serif sans-serif !default;
+$font-family-sans-serif:  "effra",
+                          "Helvetica Neue",
+                          Helvetica,
+                          Arial,
+                          sans-serif !default;
+$font-family-serif:       "proxima-nova",
+                          "Helvetica Neue",
+                          "Helvetica",
+                          Helvetica,
+                          Arial,
+                          sans-serif !default;
 // //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 // $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-serif !default;
