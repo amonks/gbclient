@@ -46,6 +46,22 @@ $(function () {
         })
       })
 
+      modal.find('.btn-mms').click(function () {
+        let mmsModal = $(Gifbooth.templates.mms())
+        $('body').append(mmsModal)
+        mmsModal.modal('show')
+        mmsModal.find('.btn-send').click(function (e) {
+          e.preventDefault()
+
+          let params = validate(mmsModal, ['to_number'])
+          if (params) {
+            params.gif_url = parsed_tweet.gif_url
+            mms(params)
+            mmsModal.modal('hide')
+          }
+        })
+      })
+
       modal.find('.btn-email').click(function () {
         let emailModal = $(Gifbooth.templates.email())
         $('body').append(emailModal)
@@ -69,6 +85,7 @@ $(function () {
       })
     })
   }
+
   let validate = function (container, things) {
     let params = {}
     for (let thing of things) {
@@ -115,8 +132,24 @@ $(function () {
 
   let email = function (params) {
     console.log('sending email', params)
-    $.post(ENV.PROXY_URL + '/email?' + serialize(params), {}, function () {
-      alert('email sent', 'success')
+    $.post(ENV.PROXY_URL + '/share/email', params)
+    .done(function () {
+      alert('Email sent!', 'success')
+    })
+    .fail(function () {
+      alert('Error sending email.', 'danger')
+    })
+  }
+
+  let mms = function (params) {
+    console.log('sending mms', params)
+    let postUrl = ENV.PROXY_URL + '/share/mms'
+    $.post(postUrl, params)
+    .done(function () {
+      alert('MMS sent!', 'success')
+    })
+    .fail(function () {
+      alert('Error sending MMS.', 'danger')
     })
   }
 
