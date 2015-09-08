@@ -4,7 +4,7 @@ GIFbooth is where the fun begins at any event. It's like a photo booth, but with
 
 It's an installation that allows for collaboration between brands, digital artists, and the general public.
 
-Gifbooth is a thing by [Studio Studio NYC](//ssttuuddiioo.com/).
+GIFbooth is a thing by [Studio Studio NYC](//ssttuuddiioo.com/).
 
 The website is a thing by [Andrew Monks](//monks.co).
 

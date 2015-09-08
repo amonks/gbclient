@@ -7,3 +7,18 @@ When this repository is pushed to, travisci builds and deploys it to [this s3 bu
 ## building
 
 To build this website, you need npm and gulp. Once you have them, run `gulp` to build the website into a new folder called `dist/`.
+
+## deployment
+
+### already have
+
+*   aws s3
+*   aws route 53
+*   aws cloudfront
+*   travis-ci
+*   mandrill
+
+### still need
+
+*   heroku
+*   proper twitter app
