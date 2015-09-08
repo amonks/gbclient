@@ -8,7 +8,11 @@ html
     // main container
     #main.container
       #lead.text-center
-        h1 #{config.event.title}
+        h1
+          if config.event.logo
+            img(src=config.event.logo)
+          else
+            #{config.event.title}
         h3
           ul
             each link in config.event.links
