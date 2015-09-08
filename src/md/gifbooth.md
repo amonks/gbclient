@@ -1,10 +1,10 @@
 ### Gifbooth
 
-GIFbooth is where the fun begins at any event. It’s like a photo booth, but with gifs! If you're at an event with a GIFbooth, you can record gifs and add animated filters to capture the moment and share it with others.
+GIFbooth is where the fun begins at any event. It’s like a photo booth, but with gifs! If you see a GIFbooth, you can record gifs and add animated filters to capture the moment and share it with others.
 
-GIFbooth is an installation that allows for collaboration between brands, digital artists, and the general public.
+It's an installation that allows for collaboration between brands, digital artists, and the general public.
 
-Gifbooth is a thing by [Pablo Gnecco](//gnec.co).
+Gifbooth is a thing by [Studio Studio NYC](//ssttuuddiioo.com/).
 
 The website is a thing by [Andrew Monks](//monks.co).
 
