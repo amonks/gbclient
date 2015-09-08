@@ -38,7 +38,7 @@ gulp.task('js', function () {
     .pipe(plumber())
     .pipe(babel())
     .pipe(uglify())
-    // .pipe(gzip({append: false}))
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
@@ -52,7 +52,7 @@ gulp.task('hbs', function () {
     }))
     .pipe(concat('templates.js'))
     .pipe(uglify())
-    // .pipe(gzip({append: false}))
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
@@ -67,7 +67,7 @@ gulp.task('jade', function () {
     .pipe(jade({ locals: {config: configEnv(config.default, 'production')} }))
     .pipe(minimize())
     .pipe(concat('index.html'))
-    // .pipe(gzip({append: false}))
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
@@ -77,7 +77,7 @@ gulp.task('jade-dev', function () {
     .pipe(jade({ locals: {config: configEnv(config.default, 'dev')} }))
     .pipe(minimize())
     .pipe(concat('dev.html'))
-    // .pipe(gzip({append: false}))
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
@@ -85,7 +85,7 @@ gulp.task('scss', function () {
   gulp.src('./src/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(minify())
-    // .pipe(gzip({append: false}))
+    .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })
 
