@@ -8,6 +8,8 @@ GIFbooth is a thing by [Studio Studio NYC](//ssttuuddiioo.com/).
 
 The website is a thing by [Andrew Monks](//monks.co).
 
+For inquiries about getting GIFbooth set up at your event please [reach out](mailto:pablo@studiostudio.nyc)!
+
 #### Privacy Policy
 
 If you share a gif, we may send cookies to your computer or mobile device to facilitate connecting to other platforms (like Facebook or Twitter)
