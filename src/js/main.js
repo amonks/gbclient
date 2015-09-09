@@ -22,6 +22,11 @@ $(function () {
       let fb_share_link = ENV.PROXY_URL + '/share/facebook/?gif_url=' + encodeURIComponent(parsed_tweet.gif_url)
       modal.find('.btn-fb').attr('href', fb_share_link)
 
+      // arm tumbl button
+      let tumblUrl = 'https://www.tumblr.com/widgets/share/tool?posttype=video&tags=GIFbooth&content=' + parsed_tweet.gif_url
+      modal.find('.btn-tumbl').attr('href', tumblUrl)
+
+      // arm tweet button
       modal.find('.btn-tweet').click(function () {
         let tweetModal = $(Gifbooth.templates.tweet())
         $('body').append(tweetModal)
