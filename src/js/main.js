@@ -23,7 +23,7 @@ $(function () {
       modal.find('.btn-fb').attr('href', fb_share_link)
 
       // arm tumbl button
-      let tumblUrl = 'https://www.tumblr.com/widgets/share/tool?posttype=video&tags=GIFbooth&content=' + parsed_tweet.gif_url
+      let tumblUrl = 'https://www.tumblr.com/widgets/share/tool?posttype=photo&tags=GIFbooth&canonicalUrl=http://gifbooth.co&content=' + parsed_tweet.gif_url
       modal.find('.btn-tumbl').attr('href', tumblUrl)
 
       // arm tweet button
