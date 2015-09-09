@@ -29,7 +29,10 @@ video {
 }
 
 #lead {
-  margin-top: 2em
+  margin-top: 2em;
+  .img-responsive {
+    margin: 0 auto;
+  }
 }
 
 #lead ul { padding-left: 0; }
