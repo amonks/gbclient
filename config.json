@@ -4,6 +4,7 @@
     "TWEET_TEXT": "another incredible gif from the booth",
     "event": {
       "title": "Jill Stuart",
+      "logo": "/jillstuart.png",
       "links": [
         {
           "title": "Instagram",
