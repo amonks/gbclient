@@ -12,7 +12,7 @@ html
           if config.event.logo
             img(src=config.event.logo)
           else
-            #{config.event.title}
+            | #{config.event.title}
         h3
           ul
             each link in config.event.links
