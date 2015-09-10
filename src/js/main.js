@@ -122,8 +122,9 @@ $(function () {
   }
 
   let renderTweet = function (tweet) {
-    tweet.mobile = mobileCheck()
-    return Gifbooth.templates.gif(tweeter.parse(tweet))
+    var input = tweeter.parse(tweet)
+    input.mobile = mobileCheck()
+    return Gifbooth.templates.gif(input)
   }
 
   let serialize = function (obj) {
