@@ -13,11 +13,6 @@ $(function () {
     tweetElement.find('.btn-share').click(function () {
       let parsed_tweet = tweeter.parse(tweet)
 
-      if (mobileCheck()) {
-        parsed_tweet.mobile = true
-      }
-      console.log('goin mobile?', parsed_tweet)
-
       // create and show modal
       let modal = $(Gifbooth.templates.share(parsed_tweet))
       $('body').append(modal)
@@ -127,6 +122,7 @@ $(function () {
   }
 
   let renderTweet = function (tweet) {
+    tweet.mobile = mobileCheck()
     return Gifbooth.templates.gif(tweeter.parse(tweet))
   }
 
