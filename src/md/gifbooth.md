@@ -12,6 +12,6 @@ For inquiries about getting GIFbooth set up at your event please [reach out](mai
 
 #### Privacy Policy
 
-If you share a gif, we may send cookies to your computer or mobile device to facilitate connecting to other platforms (like Facebook or Twitter)
+If you share a gif, we may send cookies to your computer or mobile device to facilitate connecting to other platforms (like Facebook or Twitter).
 
 We don't ever collect personal information or store it on our servers.
