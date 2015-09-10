@@ -89,7 +89,7 @@ gulp.task('scss', function () {
     .pipe(gulp.dest('build/'))
 })
 
-gulp.task('gzip', ['build'], function () {
+gulp.task('gzip', function () {
   gulp.src(['./build/*.js', './build/*.css', './build/*.html'])
     .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
