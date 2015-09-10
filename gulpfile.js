@@ -5,7 +5,7 @@
 var gulp = require('gulp')
 
 var jade = require('gulp-jade')
-// var del = require('del')
+var del = require('del')
 var plumber = require('gulp-plumber')
 var sass = require('gulp-sass')
 var babel = require('gulp-babel')
@@ -33,13 +33,17 @@ var configEnv = function (def, env) {
 
 // tasks
 
+gulp.task('del', function () {
+  del('./build/**/*')
+  del('./dist/**/*')
+})
+
 gulp.task('js', function () {
   gulp.src('./src/js/*.js')
     .pipe(plumber())
     .pipe(babel())
     .pipe(uglify())
-    .pipe(gzip({append: false}))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('build/'))
 })
 
 gulp.task('hbs', function () {
@@ -52,13 +56,12 @@ gulp.task('hbs', function () {
     }))
     .pipe(concat('templates.js'))
     .pipe(uglify())
-    .pipe(gzip({append: false}))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('build/'))
 })
 
 gulp.task('pub', function () {
   gulp.src('./pub/**/*.*')
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('build/'))
 })
 
 gulp.task('jade', function () {
@@ -67,8 +70,7 @@ gulp.task('jade', function () {
     .pipe(jade({ locals: {config: configEnv(config.default, 'production')} }))
     .pipe(minimize())
     .pipe(concat('index.html'))
-    .pipe(gzip({append: false}))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('build/'))
 })
 
 gulp.task('jade-dev', function () {
@@ -77,14 +79,18 @@ gulp.task('jade-dev', function () {
     .pipe(jade({ locals: {config: configEnv(config.default, 'dev')} }))
     .pipe(minimize())
     .pipe(concat('dev.html'))
-    .pipe(gzip({append: false}))
-    .pipe(gulp.dest('dist/'))
+    .pipe(gulp.dest('build/'))
 })
 
 gulp.task('scss', function () {
   gulp.src('./src/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(minify())
+    .pipe(gulp.dest('build/'))
+})
+
+gulp.task('gzip', ['build'], function () {
+  gulp.src(['./build/*.js', './build/*.css', './build/*.html'])
     .pipe(gzip({append: false}))
     .pipe(gulp.dest('dist/'))
 })

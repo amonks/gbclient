@@ -28,8 +28,11 @@ html
           include:marked ../md/gifbooth.md
           #year
             | &copy; 2015
-      .corner-ribbon.top-left.turquoise
+      .hidden-xs.corner-ribbon.top-left.turquoise
         a(href="#about") INFO
+      .visible-xs-block.top-bar.turquoise
+        a(href="#about") INFO
+        
     script.
       var ENV = !{JSON.stringify(config)}
     script(src='https://use.typekit.net/cwr6tgn.js')
