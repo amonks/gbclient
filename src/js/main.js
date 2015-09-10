@@ -13,7 +13,7 @@ $(function () {
     tweetElement.find('.btn-share').click(function () {
       let parsed_tweet = tweeter.parse(tweet)
 
-      parsed_tweet.mobile = mobileCheck()
+      if (mobileCheck()) parsed_tweet.mobile = true
 
       // create and show modal
       let modal = $(Gifbooth.templates.share(parsed_tweet))
