@@ -32,7 +32,7 @@ $(function () {
         $('body').append(tweetModal)
         tweetModal.modal('show')
 
-        tweetModal.find('#text').attr('value', ENV.TWEET_TEXT)
+        tweetModal.find('#text').attr('value', ENV.event.tweet_text)
 
         // arm tweet send button
         tweetModal.find('.btn-post-tweet').click(function (e) {
