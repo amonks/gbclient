@@ -41,7 +41,6 @@ window.Tweeter = function (proxy) {
 
   API.parse = function (tweet) {
     return {
-      poster: ENV.tweeter,
       mp4_url: tweet.extended_entities.media[0].video_info.variants[0].url,
       thumbnail: tweet.extended_entities.media[0].media_url,
       gif_url: ENV.GIFS_URL + '/' + tweet.id_str + '.gif',

@@ -1,6 +1,5 @@
 {
   "default": {
-    "tweeter": "boothboothtest",
     "GIFS_URL": "http://gifs.gifbooth.co",
     "event": {
       "url": "http://gifbooth.co",
