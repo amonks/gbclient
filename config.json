@@ -3,6 +3,7 @@
     "tweeter": "boothboothtest",
     "GIFS_URL": "http://gifs.gifbooth.co",
     "event": {
+      "url": "http://gifbooth.co",
       "title": "Jill Stuart",
       "tweet_text": "Fun on repeat, forever #JillStuartSS16",
       "logo": "/jillstuart.png",

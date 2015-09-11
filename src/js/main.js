@@ -81,10 +81,36 @@ $(function () {
             'to_email'
           ])
           if (params) {
-            console.log('params', params, 'parsed_tweet', parsed_tweet)
             params.gif_url = parsed_tweet.gif_url
+            params.event_title = ENV.event.title
+            params.event_url = ENV.event.url
+
             email(params)
             emailModal.modal('hide')
+          }
+        })
+      })
+
+      modal.find('.btn-instagram').click(function () {
+        let instagramModal = $(Gifbooth.templates.instagram())
+        $('body').append(instagramModal)
+        instagramModal.modal('show')
+
+        // arm email send button
+        instagramModal.find('.btn-email-send').click(function (e) {
+          e.preventDefault()
+
+          let params = validate(instagramModal, [
+            'to_email'
+          ])
+          if (params) {
+            params.attachment_url = parsed_tweet.mp4_url
+            params.attachment_filename = parsed_tweet.tweet_id + '.mp4'
+            params.event_title = ENV.event.title
+            params.event_url = ENV.event.url
+
+            instagram(params)
+            instagramModal.modal('hide')
           }
         })
       })
@@ -140,6 +166,17 @@ $(function () {
   let email = function (params) {
     console.log('sending email', params)
     $.post(ENV.PROXY_URL + '/share/email', params)
+    .done(function () {
+      alert('Email sent!', 'success')
+    })
+    .fail(function () {
+      alert('Error sending email.', 'danger')
+    })
+  }
+
+  let instagram = function (params) {
+    console.log('sending email', params)
+    $.post(ENV.PROXY_URL + '/share/instagram', params)
     .done(function () {
       alert('Email sent!', 'success')
     })
