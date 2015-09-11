@@ -45,7 +45,15 @@ video {
     margin: 0 auto;
   }
 
-  ul { padding-left: 0; }
+  ul {
+    padding-left: 0;
+    font-family: 'Helvetica Neue', 'proxima-nova', Helvetica, Arial, sans-serif;
+    color: black;
+
+    a {
+      color: black;
+    }
+  }
 
   li {
     display: inline;
