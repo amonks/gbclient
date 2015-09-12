@@ -34,7 +34,7 @@ window.Tweeter = function (proxy) {
   }
 
   API.isGif = function (tweet) {
-    if (tweet.extended_entities.media[0]) {
+    if (tweet.extended_entities && tweet.extended_entities.media) {
       return true
     }
   }
