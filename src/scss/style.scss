@@ -46,15 +46,17 @@ video {
   }
 
   ul {
-    padding-left: 0;
+    $jill-logo-color: rgb(35.7, 30.6, 33.15);
+    color: $jill-logo-color;
     font-family: 'nimbus-sans', Helvetica, Arial, sans-serif;
-    font-weight: 200;
-    color: rgb(35.7, 30.6, 33.15);
-    text-transform: uppercase;
+    font-weight: 300;
     letter-spacing: 2px;
-    // font-variant: small-caps;
+    padding-left: 0;
+    padding-top: 2em;
+    text-transform: uppercase;
+
     a {
-      color: black;
+      color: $jill-logo-color;
     }
   }
 
@@ -69,21 +71,22 @@ video {
 }
 
 .top-bar {
+  $turquoise: #1b9;
+  background: $turquoise;
   height: 2em;
-  position: absolute;
-  top: 0;
   left: 0;
+  letter-spacing: 1px;
+  position: absolute;
+  text-align: center;
+  top: 0;
   width: 100%;
   // margin: 0 auto;
-  text-align: center;
-  letter-spacing: 1px;
-  background: #1b9;
 
   a {
-    display: block;
-    padding: .4em;
-    margin: 0 auto;
     color: $gray-light;
+    display: block;
+    margin: 0 auto;
+    padding: .4em;
     text-decoration: none;
   }
 }
