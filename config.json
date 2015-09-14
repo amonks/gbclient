@@ -3,17 +3,16 @@
     "GIFS_URL": "http://gifs.gifbooth.co",
     "event": {
       "url": "http://gifbooth.co",
-      "title": "Jill Stuart",
+      "title": "GIFbooth",
       "tweet_text": "Fun on repeat, forever #JillStuartSS16",
-      "logo": "/jillstuart.png",
       "links": [
         {
           "title": "Instagram",
-          "url": "https://instagram.com/jillstuart/?hl=en"
+          "url": "http://instagram.com/studiostudionyc"
         },
         {
           "title": "Website",
-          "url": "http://www.jillstuart.com/"
+          "url": "http://www.ssttuuddiioo.com/"
         }
       ]
     }
