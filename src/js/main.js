@@ -146,8 +146,6 @@ $(function () {
     let tweetElement = $(renderTweet(tweet))
     container.append(tweetElement)
     armShareButton(tweetElement, tweet)
-
-    $('#load-more').addClass('hidden')
   }
 
   let renderTweet = function (tweet) {
