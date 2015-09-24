@@ -146,6 +146,8 @@ $(function () {
     let tweetElement = $(renderTweet(tweet))
     container.append(tweetElement)
     armShareButton(tweetElement, tweet)
+
+    $('#load-more').addClass('hidden')
   }
 
   let renderTweet = function (tweet) {
@@ -216,12 +218,7 @@ $(function () {
 
     maxID = tweets[tweets.length - 1].id_str
 
-    // if (any_new_tweets === false) {
-      // $('#load-more').addClass('hidden')
-      // getMoreTweets = function () { console.log('no more tweets') }
-    // }
-
-    if (tweets.length === 0) {
+    if ($('.tweet').length === 0) {
       getMoreTweets()
     }
   }
