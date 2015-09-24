@@ -7,6 +7,7 @@ Handlebars.registerHelper('url', function (s) {
 })
 
 let tweeter = new Tweeter(ENV.PROXY_URL)
+let maxID
 
 $(function () {
   let armShareButton = function (tweetElement, tweet) {
@@ -213,15 +214,20 @@ $(function () {
       }
     }
 
+    maxID = tweets[tweets.length - 1].id_str
+
     // if (any_new_tweets === false) {
       // $('#load-more').addClass('hidden')
       // getMoreTweets = function () { console.log('no more tweets') }
     // }
+
+    if (tweets.length === 0) {
+      getMoreTweets()
+    }
   }
 
   let getMoreTweets = function () {
     // get more tweets
-    let maxID = $('.tweet').last().attr('id')
     tweeter.getMoreTweets(maxID, gotTweets)
   }
 
