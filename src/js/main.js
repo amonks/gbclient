@@ -202,21 +202,21 @@ $(function () {
     $('#load-more').removeClass('hidden')
     console.log('got ' + tweets.length + ' tweets')
     // can't use 'for of' here cuz it doesn't guarantee order
-    let any_new_tweets = false
+    // let any_new_tweets = false
     for (let i = 0; i <= tweets.length - 1; i++) {
       let tweet = tweets[i]
 
       if (tweet.id_str !== $('.tweet').last().attr('id') &&
           tweeter.isGif(tweet)) {
         oldTweet(tweet, $('#tweets'))
-        any_new_tweets = true
+        // any_new_tweets = true
       }
     }
 
-    if (any_new_tweets === false) {
-      $('#load-more').addClass('hidden')
-      getMoreTweets = function () { console.log('no more tweets') }
-    }
+    // if (any_new_tweets === false) {
+      // $('#load-more').addClass('hidden')
+      // getMoreTweets = function () { console.log('no more tweets') }
+    // }
   }
 
   let getMoreTweets = function () {
